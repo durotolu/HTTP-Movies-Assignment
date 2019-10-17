@@ -1,10 +1,12 @@
 import React from "react";
 import axios from "axios";
 import MovieCard from "./MovieCard";
-import { Link } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
+import UpdateForm from './UpdateForm'
 
 export default class Movie extends React.Component {
   constructor(props) {
+    debugger
     super(props);
     this.state = {
       movie: null
@@ -42,16 +44,22 @@ export default class Movie extends React.Component {
     if (!this.state.movie) {
       return <div>Loading movie information...</div>;
     }
-
+    console.log(this.props.movie)
     return (
       <div className="save-wrapper">
         <MovieCard movie={this.state.movie} />
-        <Link to={`/update-movie/${this.props.match.params.id}`} className="edit-button" >
+        <Link to={`/update-movie/${this.state.movie.id}`} className="edit-button" >
           Edit
         </Link>
         <div className="save-button" onClick={this.saveMovie}>
           Save
         </div>
+        {/* <Route path='/update-movie/:id'
+          render={props => {
+          return <UpdateForm {...props} movie={this.props.movie} />
+        }}
+        />
+        <UpdateForm /> */}
       </div>
     );
   }

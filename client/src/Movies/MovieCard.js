@@ -1,6 +1,8 @@
 import React from 'react';
+import { Route } from 'react-router-dom';
 
 const MovieCard = props => {
+  debugger
   const { title, director, metascore, stars } = props.movie;
   return (
     <div className="movie-card">
